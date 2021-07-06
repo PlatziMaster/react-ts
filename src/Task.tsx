@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { TaskModel } from './models/task.model';
+
 interface PropsTask{
-  title: string;
-  completed: boolean;
+  task: TaskModel;
   styles: {
     color: string;
     border: number;
@@ -12,12 +13,12 @@ interface PropsTask{
 }
 
 const Task = (props: PropsTask) => {
-  const { title, completed } = props;
+  const { task, setUser } = props;
   return (
     <div>
-      <h1>{title}</h1>
-      <p>{completed}</p>
-      <button onClick={() => props.setUser()}></button>
+      <h1>{task.title} - {task.id}</h1>
+      <p>{task.completed}</p>
+      <button onClick={() => setUser()}></button>
     </div>
   );
 }

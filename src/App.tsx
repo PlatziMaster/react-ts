@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Avatar from "./Avatar";
 import Task from "./Task";
+import { TaskModel } from "./models/task.model";
 import Button from "./Button";
 
 function App() {
+
+  // const [tasks, setTask] = useState<TaskModel[]>();
+  const [tasks, setTask] = useState<Array<TaskModel>>([]);
+
+  const getAllTasks = async () => {
+    const data = await fetch('https://jsonplaceholder.typicode.com/todos/');
+    const json = await data.json();
+    setTask(json);
+  }
+
+  useEffect(() => {
+    getAllTasks();
+  }, [])
 
   const setUser = () => {
     console.log('click');
